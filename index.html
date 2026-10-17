@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benha-Wuhan | Ground Station and Satellite Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .academic-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .academic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #93c5fd;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Maximize Image Box Content */
+        .img-enlarged {
+            max-width: 95vw;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Blend mode for seamless transparent graphics */
+        .blend-clean {
+            mix-blend-mode: multiply;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="w-full bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- Exact High-Detail Robotic R Logo -->
+                <div class="flex items-center justify-center h-12 w-12 flex-shrink-0" title="Robotech Space">
+                    <svg viewBox="0 0 450 520" class="h-12 w-12 drop-shadow-sm select-none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Lower Left Orange L-Base -->
+                        <path d="M45 420H156V500H45V420Z" fill="#F59E0B"/>
+                        <path d="M108 300H156V420H108V300Z" fill="#F59E0B"/>
+                        
+                        <!-- Small Black Block on the baseline -->
+                        <rect x="165" y="420" width="40" height="30" rx="2" fill="#09090B"/>
+
+                        <!-- Vertical Spine (Black Left Leg) -->
+                        <rect x="108" y="100" width="48" height="205" fill="#09090B"/>
+
+                        <!-- Top Horizontal Arm (Black Rounded Extension) -->
+                        <path d="M140 100H250C258 100 265 106 265 114V130C265 138 258 145 250 145H140V100Z" fill="#09090B"/>
+                        <circle cx="128" cy="122" r="18" fill="#09090B"/>
+                        <circle cx="128" cy="122" r="7" fill="#FFFFFF"/>
+                        <circle cx="128" cy="122" r="3" fill="#09090B"/>
+
+                        <!-- Middle Horizontal Joint / Arm with Circular Pivot -->
+                        <path d="M110 240H220C235 240 250 246 258 260C263 268 261 278 254 285L245 292C236 299 220 300 205 297L110 278V240Z" fill="#09090B"/>
+                        <circle cx="132" cy="265" r="18" fill="#09090B"/>
+                        <circle cx="132" cy="265" r="7" fill="#FFFFFF"/>
+                        <circle cx="132" cy="265" r="3" fill="#09090B"/>
+
+                        <!-- Circular Socket Area for the Drill -->
+                        <circle cx="260" cy="265" r="32" fill="#FFFFFF" stroke="#09090B" stroke-width="4"/>
+                        <path d="M235 272C233 260 240 246 252 240" stroke="#09090B" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="246" y1="250" x2="246" y2="258" stroke="#09090B" stroke-width="2.5" stroke-linecap="round"/>
+
+                        <!-- Screw / Drill Bit Thread Sparks -->
+                        <line x1="272" y1="280" x2="282" y2="285" stroke="#09090B" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="280" y1="272" x2="290" y2="274" stroke="#09090B" stroke-width="2.5" stroke-linecap="round"/>
+
+                        <!-- Orange Drill / Screw with diagonal ridges -->
+                        <g transform="rotate(-40 265 265)">
+                            <path d="M260 245L270 245L268 285L262 285Z" fill="#F59E0B"/>
+                            <line x1="257" y1="252" x2="273" y2="252" stroke="#FFFFFF" stroke-width="2"/>
+                            <line x1="258" y1="260" x2="272" y2="260" stroke="#FFFFFF" stroke-width="2"/>
+                            <line x1="259" y1="268" x2="271" y2="268" stroke="#FFFFFF" stroke-width="2"/>
+                            <line x1="260" y1="276" x2="270" y2="276" stroke="#FFFFFF" stroke-width="2"/>
+                        </g>
+
+                        <!-- Orange Robotic Arm Joint 1 (Upper) -->
+                        <circle cx="280" cy="130" r="30" fill="#F59E0B"/>
+                        <circle cx="280" cy="130" r="14" fill="#FFFFFF"/>
+                        <circle cx="280" cy="130" r="7" fill="#F59E0B"/>
+
+                        <!-- Orange Robotic Slanted Linkage -->
+                        <path d="M272 152L320 205C327 213 325 226 317 233C309 240 296 238 289 230L241 177C234 169 236 156 244 149C252 142 265 144 272 152Z" fill="#F59E0B"/>
+                        <!-- White inner highlights on robotic arm -->
+                        <line x1="282" y1="175" x2="310" y2="207" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="268" y1="187" x2="278" y2="198" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+
+                        <!-- Orange Robotic Arm Joint 2 (Middle Elbow) -->
+                        <circle cx="330" cy="225" r="28" fill="#F59E0B"/>
+                        <circle cx="330" cy="225" r="13" fill="#FFFFFF"/>
+                        <circle cx="330" cy="225" r="6" fill="#F59E0B"/>
+
+                        <!-- Lower Orange Extension pointing to Drill -->
+                        <path d="M320 240L275 285C270 290 262 290 257 285L250 278C245 273 245 265 250 260L295 215L320 240Z" fill="#F59E0B"/>
+                        <rect x="258" y="272" width="28" height="8" rx="4" transform="rotate(-45 258 272)" fill="#FFFFFF"/>
+
+                        <!-- Slanted Lower Right Leg (Thick Black Pillar) -->
+                        <path d="M275 305L380 470H305L235 315L275 305Z" fill="#09090B"/>
+
+                        <!-- Lower Right Foot / Base Plate -->
+                        <rect x="295" y="470" width="102" height="28" rx="10" fill="#09090B"/>
+                    </svg>
+                </div>
+                
+                <h1 class="text-base sm:text-lg md:text-xl font-bold text-blue-950 tracking-tight" data-i18n="navTitle">
+                    Ground Station and Satellite Portal
+                </h1>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                <button id="lang-toggle-btn" class="flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-blue-700 transition">
+                    <i class="fa-solid fa-language text-lg"></i> <span id="current-lang-text">中文</span>
+                </button>
+                <div class="w-px h-6 bg-gray-300"></div>
+                <button id="admin-login-btn" class="text-sm bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 px-4 py-2 rounded-lg transition-colors font-semibold">
+                    <i class="fa-solid fa-lock mr-1"></i> <span data-i18n="adminBtn">Admin</span>
+                </button>
+                <button id="admin-logout-btn" class="hidden text-sm bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 px-4 py-2 rounded-lg transition-colors font-semibold">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> <span data-i18n="logoutBtn">Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 z-10">
+        
+        <section class="text-center mb-12 mt-2">
+            <!-- University Emblem: Directly bound to your exact GitHub repo path with multi-fallbacks -->
+            <div class="flex justify-center items-center mb-5 min-h-[90px]">
+                <img id="univ-logo"
+                     src="https://raw.githubusercontent.com/ibrahem-ship-it/GS_SAT_Portal/main/FBWPG.png" 
+                     alt="Benha-Wuhan Faculty of Postgraduate Studies" 
+                     class="w-full max-w-md md:max-w-xl h-auto object-contain blend-clean select-none" 
+                     style="mix-blend-mode: multiply;" 
+                     onerror="handleLogoFallback(this)">
+            </div>
+            
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-950 mb-2 leading-tight" data-i18n="heroTitle">
+                Benha-Wuhan Faculty of Postgraduate Studies
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 font-medium" data-i18n="heroSubtitle">
+                Ground Station & Satellite Communications Project
+            </p>
+        </section>
+
+        <section id="admin-dashboard" class="hidden mb-12 bg-white p-6 rounded-2xl border-t-4 border-t-blue-600 shadow-xl">
+            <h2 class="text-2xl font-bold mb-6 text-blue-900 flex items-center gap-2">
+                <i class="fa-solid fa-user-shield text-blue-600"></i> <span data-i18n="adminDashboard">Admin Dashboard</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Add Team Member Form -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 md:col-span-1 lg:col-span-1 shadow-sm">
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-200 pb-2 text-slate-800 flex items-center gap-2" data-i18n="addMember">
+                        <i class="fa-solid fa-user-plus text-blue-600"></i> Add Team Member
+                    </h3>
+                    <form id="form-team" class="space-y-3">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="t-name-en" data-i18n="nameEn" placeholder="Name (English)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                            <input type="text" id="t-name-zh" data-i18n="nameZh" placeholder="Name (Chinese)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="t-role-en" data-i18n="roleEn" placeholder="Specialty (English)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                            <input type="text" id="t-role-zh" data-i18n="roleZh" placeholder="Specialty (Chinese)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        
+                        <!-- Description Fields -->
+                        <div class="grid grid-cols-1 gap-2">
+                            <textarea id="t-desc-en" data-i18n="descEn" placeholder="Description / Bio (English)" rows="2" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition resize-none"></textarea>
+                            <textarea id="t-desc-zh" data-i18n="descZh" placeholder="Description / Bio (Chinese)" rows="2" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition resize-none"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="number" id="t-age" data-i18n="age" placeholder="Age (Optional)" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                            <input type="text" id="t-whatsapp" data-i18n="whatsapp" placeholder="WhatsApp (Optional)" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="t-social-name" data-i18n="socialName" placeholder="Link Text (e.g. LinkedIn)" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                            <input type="url" id="t-social-url" data-i18n="socialUrl" placeholder="Link URL" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                        </div>
+                        
+                        <label class="block text-sm font-semibold text-gray-700 mt-2" data-i18n="uploadPhoto">Upload Photo</label>
+                        <input type="file" id="t-photo" accept="image/*" required class="w-full bg-white text-slate-800 p-2 rounded-lg border border-gray-300 focus:border-blue-500 outline-none text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                        
+                        <button type="submit" id="btn-add-team" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-xl font-bold transition shadow-md mt-2 flex justify-center items-center gap-2">
+                            <span data-i18n="addBtn">Submit</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Add Resource Form -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-200 pb-2 text-slate-800 flex items-center gap-2" data-i18n="addResource">
+                        <i class="fa-solid fa-link text-indigo-600"></i> Add Resource / Link
+                    </h3>
+                    <form id="form-resource" class="space-y-3">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="r-title-en" data-i18n="resTitleEn" placeholder="Title (English)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                            <input type="text" id="r-title-zh" data-i18n="resTitleZh" placeholder="Title (Chinese)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                        </div>
+                        <input type="url" id="r-url" data-i18n="resUrl" placeholder="URL (Link)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                        
+                        <select id="r-icon" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none font-medium">
+                            <option value="fa-link">Link 🔗</option>
+                            <option value="fa-book">Book 📖</option>
+                            <option value="fa-file-pdf">PDF 📄</option>
+                            <option value="fa-file-powerpoint">PowerPoint 📊</option>
+                            <option value="fa-database">Data/Signal 📡</option>
+                        </select>
+
+                        <label class="block text-sm font-semibold text-gray-700 mt-2" data-i18n="customLogo">Custom Logo (Optional)</label>
+                        <input type="file" id="r-custom-logo" accept="image/*" class="w-full bg-white text-slate-800 p-2 rounded-lg border border-gray-300 focus:border-blue-500 outline-none text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                        
+                        <button type="submit" id="btn-add-res" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-xl font-bold transition shadow-md mt-2 flex justify-center items-center gap-2">
+                            <span data-i18n="addBtn">Submit</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Security & Password -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 md:col-span-2 lg:col-span-1 shadow-sm">
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-200 pb-2 text-slate-800 flex items-center gap-2" data-i18n="securitySettings">
+                        <i class="fa-solid fa-shield-halved text-emerald-600"></i> Security & Backup Emails
+                    </h3>
+                    <form id="form-email" class="space-y-3 mb-4">
+                        <div class="flex gap-2">
+                            <input type="email" id="backup-email" data-i18n="emailPlaceholder" placeholder="example@gmail.com" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 rounded-lg font-bold transition shadow-sm whitespace-nowrap"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </form>
+                    <div id="emails-list" class="space-y-2 mb-4 max-h-32 overflow-y-auto pr-2">
+                        <div class="text-gray-500 text-sm" data-i18n="loading">Loading data...</div>
+                    </div>
+                    <form id="form-password" class="space-y-3 pt-4 border-t border-gray-200">
+                        <input type="text" id="new-password" data-i18n="newPass" placeholder="New Password" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                        <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white p-2.5 rounded-lg font-bold transition shadow-sm"><span data-i18n="changePass">Change Password</span></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Team Grid -->
+        <section class="mb-14">
+            <div class="flex flex-col items-center text-center justify-center mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-700 shadow-sm mb-3">
+                    <i class="fa-solid fa-user-group text-xl"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900" data-i18n="teamTitle">Project Team</h2>
+                <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Research and Development Engineers</p>
+            </div>
+            
+            <div id="team-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+                <div class="text-gray-500 text-sm text-center col-span-full" data-i18n="loading">Loading data...</div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="mb-10">
+            <div class="flex flex-col items-center text-center justify-center mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-700 shadow-sm mb-3">
+                    <i class="fa-solid fa-folder-open text-xl"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900" data-i18n="resourcesTitle">Resources & Links</h2>
+                <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Documentation, Telemetry, and Literature</p>
+            </div>
+            <div id="resources-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-center">
+                <div class="text-gray-500 text-sm text-center col-span-full" data-i18n="loading">Loading data...</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Edit Member Modal -->
+    <div id="edit-modal" class="fixed inset-0 bg-slate-900 bg-opacity-70 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl w-full max-w-lg relative max-h-[90vh] overflow-y-auto border border-gray-100">
+            <button id="close-edit-modal" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 transition">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-slate-900" data-i18n="editMemberTitle">Edit Team Member</h2>
+            </div>
+            
+            <form id="form-edit-team" class="space-y-3">
+                <input type="hidden" id="e-id">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="e-name-en" data-i18n="nameEn" placeholder="Name (English)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                    <input type="text" id="e-name-zh" data-i18n="nameZh" placeholder="Name (Chinese)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="e-role-en" data-i18n="roleEn" placeholder="Specialty (English)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                    <input type="text" id="e-role-zh" data-i18n="roleZh" placeholder="Specialty (Chinese)" required class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                </div>
+                
+                <div class="grid grid-cols-1 gap-2">
+                    <textarea id="e-desc-en" data-i18n="descEn" placeholder="Description (English)" rows="2" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none resize-none"></textarea>
+                    <textarea id="e-desc-zh" data-i18n="descZh" placeholder="Description (Chinese)" rows="2" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none resize-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="number" id="e-age" data-i18n="age" placeholder="Age" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                    <input type="text" id="e-whatsapp" data-i18n="whatsapp" placeholder="WhatsApp" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="e-social-name" data-i18n="socialName" placeholder="Link Text" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                    <input type="url" id="e-social-url" data-i18n="socialUrl" placeholder="Link URL" class="w-full bg-white text-slate-800 p-2.5 rounded-lg border border-gray-300 focus:border-blue-500 outline-none">
+                </div>
+                
+                <label class="block text-sm font-semibold text-gray-700 mt-2" data-i18n="uploadPhotoOptional">Update Photo (Leave empty to keep current)</label>
+                <input type="file" id="e-photo" accept="image/*" class="w-full bg-white text-slate-800 p-2 rounded-lg border border-gray-300 focus:border-blue-500 outline-none text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                
+                <button type="submit" id="btn-save-edit" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3.5 rounded-xl font-bold transition shadow-md mt-4">
+                    <span data-i18n="saveChangesBtn">Save Changes</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-slate-900 bg-opacity-70 backdrop-blur-sm hidden flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm relative mx-4 border border-gray-100">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-shield-halved text-2xl text-blue-600"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800" data-i18n="loginTitle">Admin Login</h2>
+            </div>
+            
+            <form id="form-login" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold mb-1 text-gray-600" data-i18n="passwordLabel">Enter Password</label>
+                    <input type="password" id="login-password" required class="w-full bg-gray-50 text-slate-800 p-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="••••••••">
+                </div>
+                <div class="text-right">
+                    <button type="button" id="show-forgot-btn" class="text-sm text-blue-600 hover:text-blue-800 font-semibold" data-i18n="forgotPass">Forgot Password?</button>
+                </div>
+                <div id="login-error" class="text-red-500 text-sm hidden font-medium text-center" data-i18n="wrongPass">Incorrect password.</div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-xl font-bold transition mt-2 shadow-md">
+                    <span data-i18n="loginBtn">Login</span>
+                </button>
+            </form>
+
+            <form id="form-forgot" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-sm font-semibold mb-1 text-gray-600" data-i18n="enterBackupEmail">Enter Backup Email</label>
+                    <input type="email" id="recovery-email" required class="w-full bg-gray-50 text-slate-800 p-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="example@gmail.com">
+                </div>
+                <div id="forgot-message" class="text-sm hidden font-medium text-center p-3 rounded-xl"></div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-xl font-bold transition mt-2 shadow-md">
+                    <span data-i18n="recoverBtn">Recover Password</span>
+                </button>
+                <div class="text-center mt-3">
+                    <button type="button" id="show-login-btn" class="text-sm text-gray-500 hover:text-gray-800 font-semibold" data-i18n="backToLogin">Back to Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image Lightbox Modal with Large, Crisp View -->
+    <div id="image-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center z-[70] p-4" onclick="closeImageModal()">
+        <button class="absolute top-6 right-6 text-gray-300 hover:text-white transition text-4xl z-[80]">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-[95vw] max-h-[92vh] flex items-center justify-center" onclick="event.stopPropagation()">
+            <img id="enlarged-image" src="" alt="Enlarged Photo" class="img-enlarged object-contain rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl">
+        </div>
+    </div>
+
+    <!-- Custom Dialog Modal -->
+    <div id="custom-dialog" class="fixed inset-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm hidden flex items-center justify-center z-[80]">
+        <div id="dialog-content" class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-sm text-center">
+            <div id="dialog-icon"></div>
+            <p id="dialog-message" class="text-lg font-semibold text-slate-800 mb-6"></p>
+            <div class="flex justify-center gap-3">
+                <button id="dialog-cancel" class="hidden px-5 py-2.5 bg-gray-200 text-gray-800 hover:bg-gray-300 rounded-xl font-semibold transition"></button>
+                <button id="dialog-confirm" class="px-5 py-2.5 rounded-xl font-semibold transition shadow-md"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Multi-attempt loader to solve GitHub Pages case-sensitivity and raw paths
+        function handleLogoFallback(imgElement) {
+            const fallbackPaths = [
+                'FBWPG.png',
+                './FBWPG.png',
+                'fbwpg.png',
+                'https://ibrahem-ship-it.github.io/GS_SAT_Portal/FBWPG.png',
+                'FBWPG.PNG',
+                'FBWPG.jpg',
+                'fbwpg.jpg'
+            ];
+            
+            const currentAttempt = parseInt(imgElement.getAttribute('data-attempt') || '0', 10);
+            if (currentAttempt < fallbackPaths.length) {
+                imgElement.setAttribute('data-attempt', (currentAttempt + 1).toString());
+                imgElement.src = fallbackPaths[currentAttempt];
+            }
+        }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDbqEMhRx0RNP8gHU68fiJeiQHUPNr5hSI",
+            authDomain: "gs-sat-portal.firebaseapp.com",
+            projectId: "gs-sat-portal",
+            storageBucket: "gs-sat-portal.firebasestorage.app",
+            messagingSenderId: "607860086721",
+            appId: "1:607860086721:web:96f05a78c37a14346d0140"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // DOM References
+        const adminBtn = document.getElementById('admin-login-btn');
+        const logoutBtn = document.getElementById('admin-logout-btn');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.getElementById('close-modal');
+        const loginForm = document.getElementById('form-login');
+        const forgotForm = document.getElementById('form-forgot');
+        const loginError = document.getElementById('login-error');
+        const forgotMessage = document.getElementById('forgot-message');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        
+        const teamList = document.getElementById('team-list');
+        const resourcesList = document.getElementById('resources-list');
+        const emailsList = document.getElementById('emails-list');
+
+        const teamForm = document.getElementById('form-team');
+        const editTeamForm = document.getElementById('form-edit-team');
+        const editModal = document.getElementById('edit-modal');
+        const closeEditModal = document.getElementById('close-edit-modal');
+
+        const resourceForm = document.getElementById('form-resource');
+        const emailForm = document.getElementById('form-email');
+        const passwordForm = document.getElementById('form-password');
+
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        const currentLangText = document.getElementById('current-lang-text');
+
+        const dictionary = {
+            en: {
+                navTitle: "Ground Station and Satellite Portal",
+                adminBtn: "Admin",
+                logoutBtn: "Logout",
+                heroTitle: "Benha-Wuhan Faculty of Postgraduate Studies",
+                heroSubtitle: "Ground Station & Satellite Communications Project",
+                adminDashboard: "Admin Dashboard",
+                addMember: "Add Team Member",
+                editMemberTitle: "Edit Team Member",
+                nameEn: "Name (English)",
+                nameZh: "Name (Chinese)",
+                roleEn: "Specialty (English)",
+                roleZh: "Specialty (Chinese)",
+                descEn: "Description (English)",
+                descZh: "Description (Chinese)",
+                age: "Age (Optional)",
+                uploadPhoto: "Upload Photo",
+                uploadPhotoOptional: "Update Photo (Optional, leave empty to keep current)",
+                customLogo: "Custom Logo (Optional)",
+                addBtn: "Submit",
+                saveChangesBtn: "Save Changes",
+                addResource: "Add Resource / Link",
+                resTitleEn: "Title (English)",
+                resTitleZh: "Title (Chinese)",
+                resUrl: "URL (Link)",
+                teamTitle: "Project Team",
+                resourcesTitle: "Resources & Links",
+                loginTitle: "Admin Access",
+                passwordLabel: "Enter Admin Password",
+                loginBtn: "Login",
+                loading: "Loading data...",
+                emptyTeam: "No team members added yet.",
+                emptyRes: "No resources added yet.",
+                wrongPass: "Incorrect password. Try again.",
+                ageLabel: "Age",
+                forgotPass: "Forgot Password?",
+                enterBackupEmail: "Enter Backup Email",
+                recoverBtn: "Recover Password",
+                backToLogin: "Back to Login",
+                emailNotFound: "Email not found in backup list.",
+                securitySettings: "Security & Backup Emails",
+                emailPlaceholder: "example@gmail.com",
+                changePass: "Update Password",
+                newPass: "New Password",
+                simulatedEmailText: "System Check: Your password is:",
+                whatsapp: "WhatsApp (Optional)",
+                socialName: "Link Text (e.g. LinkedIn)",
+                socialUrl: "Link URL"
+            },
+            zh: {
+                navTitle: "地面站与卫星门户",
+                adminBtn: "管理员",
+                logoutBtn: "登出",
+                heroTitle: "本哈-武汉大学研究生院",
+                heroSubtitle: "地面站与卫星通信项目",
+                adminDashboard: "管理员控制台",
+                addMember: "添加团队成员",
+                editMemberTitle: "编辑团队成员",
+                nameEn: "姓名 (英文)",
+                nameZh: "姓名 (中文)",
+                roleEn: "专业/角色 (英文)",
+                roleZh: "专业/角色 (中文)",
+                descEn: "描述 (英文)",
+                descZh: "描述 (中文)",
+                age: "年龄 (可选)",
+                uploadPhoto: "上传照片",
+                uploadPhotoOptional: "更新照片（可选，留空保留当前照片）",
+                customLogo: "自定义徽标(可选)",
+                addBtn: "提交",
+                saveChangesBtn: "保存更改",
+                addResource: "添加资源 / 链接",
+                resTitleEn: "标题 (英文)",
+                resTitleZh: "标题 (中文)",
+                resUrl: "URL (链接)",
+                teamTitle: "项目团队",
+                resourcesTitle: "资源与链接",
+                loginTitle: "管理员登录",
+                passwordLabel: "输入管理员密码",
+                loginBtn: "登录",
+                loading: "加载数据...",
+                emptyTeam: "暂无团队成员。",
+                emptyRes: "暂无资源。",
+                wrongPass: "密码错误，请重试。",
+                ageLabel: "年龄",
+                forgotPass: "忘记密码？",
+                enterBackupEmail: "输入备用邮箱",
+                recoverBtn: "恢复密码",
+                backToLogin: "返回登录",
+                emailNotFound: "备份列表中未找到该邮箱。",
+                securitySettings: "安全与备用邮箱",
+                emailPlaceholder: "example@gmail.com",
+                changePass: "更新密码",
+                newPass: "新密码",
+                simulatedEmailText: "系统检查：您的密码是：",
+                whatsapp: "WhatsApp 号码 (可选)",
+                socialName: "链接文本 (如 LinkedIn)",
+                socialUrl: "链接 URL"
+            }
+        };
+
+        let currentLang = 'en';
+        let isAdmin = false;
+        let teamData = [];
+        let resourcesData = [];
+        let adminConfig = {
+            password: '12345678',
+            backupEmails: []
+        };
+
+        const customDialog = document.getElementById('custom-dialog');
+        const dialogMessage = document.getElementById('dialog-message');
+        const dialogIcon = document.getElementById('dialog-icon');
+        const dialogConfirmBtn = document.getElementById('dialog-confirm');
+        const dialogCancelBtn = document.getElementById('dialog-cancel');
+        let currentConfirmCallback = null;
+
+        function showDialog({ message, type = 'info', showCancel = false, onConfirm = null }) {
+            dialogMessage.innerText = message;
+            if (type === 'warning' || type === 'confirm') {
+                dialogIcon.className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl bg-orange-100 text-orange-600';
+                dialogIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                dialogConfirmBtn.className = 'px-5 py-2.5 bg-orange-600 text-white hover:bg-orange-700 rounded-xl font-semibold transition shadow-md';
+            } else if (type === 'success') {
+                dialogIcon.className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl bg-green-100 text-green-600';
+                dialogIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+                dialogConfirmBtn.className = 'px-5 py-2.5 bg-green-600 text-white hover:bg-green-700 rounded-xl font-semibold transition shadow-md';
+            } else {
+                dialogIcon.className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl bg-blue-100 text-blue-600';
+                dialogIcon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+                dialogConfirmBtn.className = 'px-5 py-2.5 bg-blue-600 text-white hover:bg-blue-700 rounded-xl font-semibold transition shadow-md';
+            }
+            if (showCancel) {
+                dialogCancelBtn.classList.remove('hidden');
+                dialogCancelBtn.innerText = currentLang === 'en' ? 'Cancel' : '取消';
+            } else {
+                dialogCancelBtn.classList.add('hidden');
+            }
+            dialogConfirmBtn.innerText = currentLang === 'en' ? 'OK' : '确认';
+            currentConfirmCallback = onConfirm;
+            customDialog.classList.remove('hidden');
+        }
+
+        function closeDialog() {
+            customDialog.classList.add('hidden');
+            currentConfirmCallback = null;
+        }
+
+        dialogCancelBtn.addEventListener('click', closeDialog);
+        dialogConfirmBtn.addEventListener('click', () => {
+            if (currentConfirmCallback) currentConfirmCallback();
+            closeDialog();
+        });
+
+        window.openImageModal = (src) => {
+            if(!src) return;
+            document.getElementById('enlarged-image').src = src;
+            document.getElementById('image-modal').classList.remove('hidden');
+        };
+        
+        window.closeImageModal = () => {
+            document.getElementById('image-modal').classList.add('hidden');
+            setTimeout(() => { document.getElementById('enlarged-image').src = ''; }, 200);
+        };
+
+        // Resize and optimize picture for high-definition clarity
+        function resizeAndConvertToBase64(file, maxWidth = 1200, maxHeight = 1200) {
+            return new Promise((resolve, reject) => {
+                if (!file) {
+                    resolve(null);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > maxWidth) {
+                                height *= maxWidth / width;
+                                width = maxWidth;
+                            }
+                        } else {
+                            if (height > maxHeight) {
+                                width *= maxHeight / height;
+                                height = maxHeight;
+                            }
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // Output high-quality image
+                        resolve(canvas.toDataURL('image/jpeg', 0.85)); 
+                    };
+                };
+                reader.onerror = (error) => reject(error);
+            });
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            currentLangText.innerText = currentLang === 'en' ? '中文' : 'EN';
+            applyTranslations();
+        });
+
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dictionary[currentLang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = dictionary[currentLang][key];
+                    } else if (el.tagName === 'LABEL') {
+                        el.innerText = dictionary[currentLang][key];
+                    } else {
+                        el.innerHTML = dictionary[currentLang][key];
+                    }
+                }
+            });
+            renderTeam();
+            renderResources();
+        }
+
+        adminBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+            loginForm.classList.remove('hidden');
+            forgotForm.classList.add('hidden');
+            loginError.classList.add('hidden');
+            document.getElementById('login-password').value = '';
+        });
+        
+        closeModal.addEventListener('click', () => loginModal.classList.add('hidden'));
+
+        document.getElementById('show-forgot-btn').addEventListener('click', () => {
+            loginForm.classList.add('hidden');
+            forgotForm.classList.remove('hidden');
+            forgotMessage.classList.add('hidden');
+            document.getElementById('recovery-email').value = '';
+        });
+
+        document.getElementById('show-login-btn').addEventListener('click', () => {
+            forgotForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            loginError.classList.add('hidden');
+            document.getElementById('login-password').value = '';
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const passwordInput = document.getElementById('login-password').value;
+            
+            if (passwordInput === adminConfig.password) {
+                isAdmin = true;
+                loginModal.classList.add('hidden');
+                adminDashboard.classList.remove('hidden');
+                adminBtn.classList.add('hidden');
+                logoutBtn.classList.remove('hidden');
+                renderTeam(); 
+                renderResources();
+                renderEmails();
+            } else {
+                loginError.innerText = dictionary[currentLang].wrongPass;
+                loginError.classList.remove('hidden');
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            isAdmin = false;
+            adminDashboard.classList.add('hidden');
+            adminBtn.classList.remove('hidden');
+            logoutBtn.classList.add('hidden');
+            renderTeam();
+            renderResources();
+        });
+
+        function initFirebaseListeners() {
+            onSnapshot(collection(db, "team"), (snapshot) => {
+                teamData = [];
+                snapshot.forEach((doc) => {
+                    teamData.push({ id: doc.id, ...doc.data() });
+                });
+                renderTeam();
+            });
+
+            onSnapshot(collection(db, "resources"), (snapshot) => {
+                resourcesData = [];
+                snapshot.forEach((doc) => {
+                    resourcesData.push({ id: doc.id, ...doc.data() });
+                });
+                renderResources();
+            });
+
+            onSnapshot(doc(db, "config", "admin"), (docSnap) => {
+                if (docSnap.exists()) {
+                    adminConfig = docSnap.data();
+                    if(isAdmin) renderEmails();
+                } else {
+                    setDoc(doc(db, "config", "admin"), adminConfig);
+                }
+            });
+        }
+
+        // Render Team Members with Large Card and Picture Representation
+        function renderTeam() {
+            teamList.innerHTML = '';
+            if(teamData.length === 0) {
+                teamList.innerHTML = `<div class="text-gray-500">${dictionary[currentLang].emptyTeam}</div>`;
+                return;
+            }
+            teamData.forEach((data) => {
+                const name = currentLang === 'en' ? data.nameEn : (data.nameZh || data.nameEn);
+                const role = currentLang === 'en' ? data.roleEn : (data.roleZh || data.roleEn);
+                const desc = currentLang === 'en' ? (data.descEn || '') : (data.descZh || data.descEn || '');
+                
+                let extraLinks = '';
+                if(data.whatsapp) {
+                    const cleanPhone = data.whatsapp.replace(/[^0-9]/g, '');
+                    extraLinks += `<a href="https://wa.me/${cleanPhone}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 bg-green-50 text-green-600 hover:bg-green-500 hover:text-white rounded-full transition-colors mx-1 shadow-sm" title="WhatsApp"><i class="fa-brands fa-whatsapp text-lg"></i></a>`;
+                }
+                if(data.socialName && data.socialUrl) {
+                    extraLinks += `<a href="${data.socialUrl}" target="_blank" class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition-colors mx-1 shadow-sm"><i class="fa-solid fa-link text-[10px]"></i> ${data.socialName}</a>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'academic-card p-6 text-center relative group flex flex-col items-center h-full bg-white';
+                
+                const adminActions = isAdmin ? `
+                    <div class="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all z-10">
+                        <button onclick="openEditModal('${data.id}')" class="bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center transition" title="Edit"><i class="fa-solid fa-pen text-sm"></i></button>
+                        <button onclick="deleteFirestoreData('team', '${data.id}')" class="bg-red-50 text-red-600 hover:bg-red-600 hover:text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center transition" title="Delete"><i class="fa-solid fa-trash text-sm"></i></button>
+                    </div>
+                ` : '';
+
+                // High-visibility, prominent image container
+                card.innerHTML = `
+                    ${adminActions}
+                    <div class="w-52 h-52 mx-auto mb-5 rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-50 flex items-center justify-center cursor-pointer hover:border-blue-400 transition-all relative group-hover:shadow-xl" onclick="openImageModal('${data.photoBase64 || ''}')">
+                        ${data.photoBase64 
+                            ? `<img src="${data.photoBase64}" alt="${name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">` 
+                            : `<i class="fa-solid fa-user text-5xl text-gray-300"></i>`}
+                        <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-all pointer-events-none flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">${name}</h3>
+                    <p class="text-blue-700 text-xs sm:text-sm font-semibold mb-3 bg-blue-50 px-3 py-1 rounded-full inline-block border border-blue-100">${role}</p>
+                    
+                    ${desc ? `<p class="text-slate-600 text-sm mb-4 italic px-2 leading-relaxed">"${desc}"</p>` : ''}
+                    
+                    <div class="mt-auto pt-3 w-full border-t border-slate-100 flex flex-col items-center gap-2">
+                        <div class="flex items-center justify-center flex-wrap gap-2">
+                            ${extraLinks}
+                        </div>
+                        ${data.age ? `<p class="text-slate-400 text-xs mt-1"><i class="fa-regular fa-calendar-days mr-1"></i> ${dictionary[currentLang].ageLabel}: ${data.age}</p>` : ''}
+                    </div>
+                `;
+                teamList.appendChild(card);
+            });
+        }
+
+        function renderResources() {
+            resourcesList.innerHTML = '';
+            if(resourcesData.length === 0) {
+                resourcesList.innerHTML = `<div class="text-gray-500">${dictionary[currentLang].emptyRes}</div>`;
+                return;
+            }
+            resourcesData.forEach((data) => {
+                const title = currentLang === 'en' ? data.titleEn : (data.titleZh || data.titleEn);
+                
+                let iconHtml = `<div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-lg shadow-sm"><i class="fa-solid ${data.icon}"></i></div>`;
+                if (data.logoBase64) {
+                    iconHtml = `<div class="w-10 h-10 bg-white border border-gray-100 rounded-xl flex items-center justify-center overflow-hidden shadow-sm"><img src="${data.logoBase64}" alt="logo" class="w-full h-full object-contain"></div>`;
+                }
+                
+                const card = document.createElement('div');
+                card.className = 'academic-card p-4 flex items-center justify-between group relative overflow-hidden bg-white';
+                card.innerHTML = `
+                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-indigo-500"></div>
+                    <a href="${data.url}" target="_blank" class="flex items-center gap-3.5 flex-grow pl-3 text-slate-700 hover:text-indigo-600 transition-colors">
+                        ${iconHtml}
+                        <span class="font-semibold text-sm sm:text-base">${title}</span>
+                    </a>
+                    ${isAdmin ? `<button onclick="deleteFirestoreData('resources', '${data.id}')" class="bg-red-50 text-red-500 hover:bg-red-500 hover:text-white w-8 h-8 rounded-full ml-4 opacity-0 group-hover:opacity-100 transition-all flex-shrink-0 shadow-sm flex items-center justify-center"><i class="fa-solid fa-trash text-sm"></i></button>` : ''}
+                `;
+                resourcesList.appendChild(card);
+            });
+        }
+
+        teamForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!isAdmin) return;
+            
+            const btn = document.getElementById('btn-add-team');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>'; 
+            btn.disabled = true;
+
+            const fileInput = document.getElementById('t-photo');
+            const file = fileInput.files[0];
+            const base64Image = await resizeAndConvertToBase64(file);
+
+            await addDoc(collection(db, "team"), {
+                nameEn: document.getElementById('t-name-en').value,
+                nameZh: document.getElementById('t-name-zh').value,
+                roleEn: document.getElementById('t-role-en').value,
+                roleZh: document.getElementById('t-role-zh').value,
+                descEn: document.getElementById('t-desc-en').value || null,
+                descZh: document.getElementById('t-desc-zh').value || null,
+                age: document.getElementById('t-age').value || null,
+                whatsapp: document.getElementById('t-whatsapp').value || null,
+                socialName: document.getElementById('t-social-name').value || null,
+                socialUrl: document.getElementById('t-social-url').value || null,
+                photoBase64: base64Image,
+                createdAt: new Date().getTime()
+            });
+
+            teamForm.reset();
+            btn.innerHTML = `<span data-i18n="addBtn">${dictionary[currentLang].addBtn}</span>`;
+            btn.disabled = false;
+        });
+
+        // Edit Team Member Handler
+        window.openEditModal = (id) => {
+            const member = teamData.find(m => m.id === id);
+            if(!member) return;
+
+            document.getElementById('e-id').value = id;
+            document.getElementById('e-name-en').value = member.nameEn || '';
+            document.getElementById('e-name-zh').value = member.nameZh || '';
+            document.getElementById('e-role-en').value = member.roleEn || '';
+            document.getElementById('e-role-zh').value = member.roleZh || '';
+            document.getElementById('e-desc-en').value = member.descEn || '';
+            document.getElementById('e-desc-zh').value = member.descZh || '';
+            document.getElementById('e-age').value = member.age || '';
+            document.getElementById('e-whatsapp').value = member.whatsapp || '';
+            document.getElementById('e-social-name').value = member.socialName || '';
+            document.getElementById('e-social-url').value = member.socialUrl || '';
+            document.getElementById('e-photo').value = '';
+
+            editModal.classList.remove('hidden');
+        };
+
+        closeEditModal.addEventListener('click', () => {
+            editModal.classList.add('hidden');
+        });
+
+        editTeamForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!isAdmin) return;
+
+            const btn = document.getElementById('btn-save-edit');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>'; 
+            btn.disabled = true;
+
+            const id = document.getElementById('e-id').value;
+            const currentMember = teamData.find(m => m.id === id);
+            
+            const fileInput = document.getElementById('e-photo');
+            let base64Image = currentMember.photoBase64;
+            if(fileInput.files.length > 0) {
+                base64Image = await resizeAndConvertToBase64(fileInput.files[0]);
+            }
+
+            await updateDoc(doc(db, "team", id), {
+                nameEn: document.getElementById('e-name-en').value,
+                nameZh: document.getElementById('e-name-zh').value,
+                roleEn: document.getElementById('e-role-en').value,
+                roleZh: document.getElementById('e-role-zh').value,
+                descEn: document.getElementById('e-desc-en').value || null,
+                descZh: document.getElementById('e-desc-zh').value || null,
+                age: document.getElementById('e-age').value || null,
+                whatsapp: document.getElementById('e-whatsapp').value || null,
+                socialName: document.getElementById('e-social-name').value || null,
+                socialUrl: document.getElementById('e-social-url').value || null,
+                photoBase64: base64Image
+            });
+
+            editModal.classList.add('hidden');
+            btn.innerHTML = `<span data-i18n="saveChangesBtn">${dictionary[currentLang].saveChangesBtn}</span>`;
+            btn.disabled = false;
+        });
+
+        resourceForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!isAdmin) return;
+
+            const btn = document.getElementById('btn-add-res');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            btn.disabled = true;
+
+            const fileInput = document.getElementById('r-custom-logo');
+            const file = fileInput.files[0];
+            const base64Image = file ? await resizeAndConvertToBase64(file, 200, 200) : null;
+
+            await addDoc(collection(db, "resources"), {
+                titleEn: document.getElementById('r-title-en').value,
+                titleZh: document.getElementById('r-title-zh').value,
+                url: document.getElementById('r-url').value,
+                icon: document.getElementById('r-icon').value,
+                logoBase64: base64Image,
+                createdAt: new Date().getTime()
+            });
+
+            resourceForm.reset();
+            btn.innerHTML = `<span data-i18n="addBtn">${dictionary[currentLang].addBtn}</span>`;
+            btn.disabled = false;
+        });
+
+        emailForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!isAdmin) return;
+            const newEmail = document.getElementById('backup-email').value.trim().toLowerCase();
+            if(newEmail && !adminConfig.backupEmails.includes(newEmail)) {
+                adminConfig.backupEmails.push(newEmail);
+                await updateDoc(doc(db, "config", "admin"), { backupEmails: adminConfig.backupEmails });
+            }
+            emailForm.reset();
+        });
+
+        passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if(!isAdmin) return;
+            const newPassword = document.getElementById('new-password').value;
+            if(newPassword) {
+                showDialog({
+                    message: currentLang === 'en' ? "Are you sure you want to change the password?" : "您确定要更改密码吗？",
+                    type: 'confirm',
+                    showCancel: true,
+                    onConfirm: async () => {
+                        await updateDoc(doc(db, "config", "admin"), { password: newPassword });
+                        passwordForm.reset();
+                        showDialog({ message: currentLang === 'en' ? "Password updated successfully!" : "密码更新成功！", type: 'success' });
+                    }
+                });
+            }
+        });
+
+        window.deleteFirestoreData = (collectionName, docId) => {
+            if(!isAdmin) return;
+            showDialog({
+                message: currentLang === 'en' ? "Are you sure you want to delete this?" : "您确定要删除吗？",
+                type: 'warning',
+                showCancel: true,
+                onConfirm: async () => {
+                    await deleteDoc(doc(db, collectionName, docId));
+                }
+            });
+        };
+
+        window.deleteEmailHandler = (emailToDelete) => {
+            if(!isAdmin) return;
+            showDialog({
+                message: currentLang === 'en' ? "Delete this backup email?" : "删除这封邮件？",
+                type: 'warning',
+                showCancel: true,
+                onConfirm: async () => {
+                    adminConfig.backupEmails = adminConfig.backupEmails.filter(e => e !== emailToDelete);
+                    await updateDoc(doc(db, "config", "admin"), { backupEmails: adminConfig.backupEmails });
+                }
+            });
+        };
+
+        function renderEmails() {
+            if(!isAdmin) return;
+            emailsList.innerHTML = '';
+            if(adminConfig.backupEmails.length === 0) {
+                emailsList.innerHTML = `<div class="text-gray-500 text-sm">No backup emails added.</div>`;
+                return;
+            }
+            adminConfig.backupEmails.forEach((email) => {
+                const item = document.createElement('div');
+                item.className = 'flex justify-between items-center bg-white p-2 rounded-lg border border-gray-200';
+                item.innerHTML = `
+                    <span class="text-sm text-slate-700 font-medium">${email}</span>
+                    <button onclick="deleteEmailHandler('${email}')" class="text-red-500 hover:text-red-700 w-6 h-6 flex items-center justify-center rounded transition"><i class="fa-solid fa-xmark"></i></button>
+                `;
+                emailsList.appendChild(item);
+            });
+        }
+
+        // Run application setup
+        applyTranslations();
+        initFirebaseListeners();
+    </script>
+</body>
+</html>
